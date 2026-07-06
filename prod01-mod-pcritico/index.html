@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Microcredencial P009 - Pensamiento Crítico para Trabajar con IA</title>
+<script>
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap" type="text/css">
+<style>
+
+/* PERMITE ESCALAR EN IPHONE */
+html, body, #app, .slidev-layout, #page-root {
+  touch-action: manipulation !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* SE LE AGREGA UN POCO MAS PARA QUE OCULTE LA BARRA EN HORIZONTAL P IPHONE */
+html, body {
+  /* Permite un mínimo de movimiento vertical para engañar a iOS Safari */
+  min-height: calc(100vh + 20px) !important;
+  overflow-y: scroll !important;
+}
+
+/* PINTA ROJO DEBUG */
+/* .slidev-layout {
+background: red !important;
+background-image: none !important;
+} 
+*/
+/* .slidev-layout::after {
+  content: "GLOBAL CSS OK13";
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 99999;
+
+  padding: 6px 10px;
+  border-radius: 8px;
+
+  background: white;
+  color: red;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+} */
+
+
+/* XXX OCULTA TOTALMENTE LA BARRA, SE USA EL PARCIAL*/
+/* body *:not(.slidev-layout):not(.slidev-layout *):is(
+  [class*="bottom"],
+  [style*="bottom"]
+) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+ */
+
+
+
+/* UTILIZA LA MISMA ESTRUCTURA PARA AISLAR SOLO LOS ELEMENTOS DEL MENÚ FINAL */
+[class*="bottom"] button:has(div[class*="settings"]),
+[class*="bottom"] button:has(span[class*="settings"]),
+[class*="bottom"] button[title*="options" i],
+[class*="bottom"] button[aria-label*="options" i],
+[class*="bottom"] .v-separator,
+[class*="bottom"] .slidev-nav-controls button:nth-last-child(-n+2) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+
+/* ELIMINA POR COMPLETO EL PUNTO ROJO DE SLIDEV Y SUS VARIANTES */
+.slidev-pointer,
+.slidev-laser,
+#slidev-laser-pointer,
+[class*="laser-pointer"],
+[class*="slidev-pointer"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* FUERZA AL NAVEGADOR A MOSTRAR SIEMPRE EL CURSOR POR DEFECTO DEL SISTEMA */
+html, 
+body, 
+#app, 
+.slidev-layout, 
+.slidev-container {
+  cursor: default !important;
+}
+
+
+
+
+
+/* =========================================================
+   Navegación propia: flechas + número de slide  - poner los botones en slides.md, en cada slide 
+   ========================================================= */
+.nav-container {
+  position: fixed !important;
+  right: 0.8rem !important;
+  bottom: 0.4rem !important;
+  z-index: 999999 !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 5px !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  transform: none !important;
+  text-align: initial !important;
+
+  pointer-events: auto !important;
+}
+
+/* Botones con flecha blanca usando el texto ‹ y › */
+/* .nav-btn {
+  width: 30px !important;
+  height: 24px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 0 3px 0 !important;
+
+  color: #ffffff !important;
+  background-color: #2563eb !important;
+
+  border: 1px solid rgb(0, 44, 201) !important;
+  border-radius: 4px !important;
+
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: manipulation !important;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22) !important;
+
+  transition: background-color 0.2s, transform 0.1s !important;
+} */
+
+
+
+/* XXX */
+/* No usar SVG de fondo */
+/* .nav-btn:nth-child(1),
+.nav-btn:nth-child(2) {
+  background-image: none !important;
+}
+.nav-btn:hover {
+  background-color: #1d4ed8 !important;
+}
+.nav-btn:active {
+  background-color: #1e40af !important;
+  transform: scale(0.92) !important;
+}
+ */
+
+
+/* Número de slide acoplado a la derecha de los botones */
+.hc-slide-number {
+  min-width: 3.8rem !important;
+  height: 26px !important;
+  padding: 0 0.5rem !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+
+  border-radius: 4px !important;
+  background-color: #2563eb !important;
+  /* border: 1px solid rgba(148, 163, 184, 0.38) !important; */
+  border: 1px solid rgb(0, 44, 201) !important;
+  color: rgba(255, 255, 255, 0.99999999) !important;
+
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.02em !important;
+
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+
+  pointer-events: none !important;
+}
+
+
+
+/* =========================================================
+   Global readability patch
+   Textos secundarios más oscuros y legibles
+   ========================================================= */
+
+/* GRISES MUY CLAROS → GRIS MEDIO OSCURO */
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-slate-400"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-gray-400"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-zinc-400"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-neutral-400"] {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* text-slate-500 → bastante más oscuro */
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-slate-500"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-gray-500"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-zinc-500"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-neutral-500"] {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* text-slate-600 → casi negro */
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-slate-600"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-gray-600"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-zinc-600"],
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="text-neutral-600"] {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Opacidades bajas → mucho más visibles */
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="opacity-40"] {
+  opacity: 0.85 !important;
+}
+
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="opacity-50"] {
+  opacity: 0.9 !important;
+}
+
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="opacity-60"] {
+  opacity: 0.94 !important;
+}
+
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="opacity-70"] {
+  opacity: 0.96 !important;
+}
+
+.slidev-layout :is(p, span, li, small, figcaption, blockquote)[class~="opacity-80"] {
+  opacity: 1 !important;
+}
+
+
+
+/* CUANDO EL CELULAR SE GIRA A HORIZONTAL (APAISADO), FORZAMOS QUE SE MUESTRE */
+@media (max-width: 950px) and (orientation: landscape) {
+    [class*="bottom"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    }
+}
+
+</style>
+<link rel="preload" as="image" href="./assets/monterrey-eW-_Sp03.png">
+<link rel="preload" as="image" href="./assets/deepLearningAI-CyC0FPep.png">
+<link rel="preload" as="image" href="./assets/andrew-ng-N7wB9kyv.png">
+<link rel="preload" as="image" href="./assets/googleAI-BzfJWULN.png">
+<link rel="preload" as="image" href="./assets/smiling-couple-using-tablet-pc-edit-C99lTZPU.jpg">
+<link rel="preload" as="image" href="./assets/monterrey-512x384-DyFrBugr.png">
+<link rel="preload" as="image" href="./assets/deepLearningAI2-512x384-DaV44dKq.png">
+<link rel="preload" as="image" href="./assets/google-black-512x384-2-CmeyyLBb.png">
+<link rel="preload" as="image" href="./assets/girl-pc-cartoon-512x384-CX7rDKNl.png">
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="slidev:version" content="52.16.0">
+<meta property="og:title" content="Microcredencial P009 - Pensamiento Crítico para Trabajar con IA">  <script type="module" crossorigin src="./assets/index-CxoJcLak.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-QTnfLwEv.js">
+  <link rel="modulepreload" crossorigin href="./assets/modules/shiki-BdTzSZJx.js">
+  <link rel="modulepreload" crossorigin href="./assets/modules/vue-BDUphdQ1.js">
+  <link rel="stylesheet" crossorigin href="./assets/modules/shiki-BrmBd2_v.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-Dz0sylyR.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="mermaid-rendering-container"></div>
+  
+
+</body>
+</html>
